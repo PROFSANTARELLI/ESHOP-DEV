@@ -1,0 +1,331 @@
+DOCUMENTO DO PROFESSOR
+
+Projeto: EasyShop Web Platform
+
+Documento: Registro de Defeitos Planejados
+
+Uso: Exclusivo do Professor
+
+Versão: 1.0
+
+1. Objetivo
+
+Este documento registra todos os defeitos intencionais incorporados ao sistema EasyShop para fins didáticos.
+
+Esses defeitos simulam problemas encontrados em projetos reais e servirão como base para atividades de:
+
+testes manuais;
+testes exploratórios;
+elaboração de casos de teste;
+testes de API;
+automação com Pytest;
+automação Web com Selenium;
+testes de integração;
+testes de regressão;
+testes de desempenho;
+testes de segurança.
+
+Cada defeito possui um identificador único, permitindo sua rastreabilidade ao longo da disciplina.
+
+2. Organização
+
+Cada defeito será identificado pelo padrão:
+
+BUG-<MÓDULO>-NNN
+
+Exemplos:
+
+BUG-AUT-001
+
+BUG-CAR-004
+
+BUG-API-009
+
+BUG-PER-003
+3. Estrutura de cada Defeito
+
+Cada registro seguirá exatamente o mesmo modelo.
+
+Campo	Descrição
+Código	Identificador único
+Módulo	Área afetada
+Tipo	Funcional, API, UI, Performance etc.
+Severidade	Baixa, Média, Alta ou Crítica
+Prioridade	P1 a P4
+Versão	Em qual versão o bug existe
+Requisito relacionado	RF correspondente
+Regra violada	RN correspondente
+Descrição técnica	O defeito implementado
+Sintoma observado	Como o aluno perceberá o problema
+Como reproduzir	Passos para reprodução
+Estratégia de teste	Técnica que tende a encontrar o defeito
+Aula sugerida	Aula em que o bug será explorado
+Correção prevista	Versão em que será corrigido
+4. Classificação dos Defeitos
+
+Os defeitos serão distribuídos por categoria para garantir diversidade de cenários.
+
+Categoria	Quantidade aproximada
+Funcionais	30
+Interface (UI)	15
+API	15
+Banco de Dados	10
+Performance	10
+Segurança	10
+Integração	10
+Regressão	10
+Total	100
+5. Registro dos Defeitos
+BUG-AUT-001
+
+Módulo: Autenticação
+
+Tipo: Funcional
+
+Severidade: Alta
+
+Prioridade: P1
+
+Versão: 1.0
+
+Requisitos relacionados
+
+RF-AUT-004
+
+Regra violada
+
+RN-AUT-003
+
+Descrição
+
+O bloqueio após cinco tentativas de login inválidas não é aplicado.
+
+Sintoma
+
+O usuário consegue realizar tentativas ilimitadas de autenticação.
+
+Reprodução
+Informar senha incorreta.
+Repetir seis vezes.
+Observar que a conta permanece desbloqueada.
+Estratégia
+Teste funcional
+Teste exploratório
+Automação API
+Aula
+
+Autenticação
+
+Correção
+
+Versão 1.1
+
+BUG-AUT-002
+Descrição
+
+O sistema aceita e-mails duplicados quando diferem apenas em letras maiúsculas/minúsculas.
+
+Exemplo:
+
+joao@email.com
+
+JOAO@email.com
+
+Esse comportamento viola RN-AUT-001.
+
+BUG-CAR-001
+Tipo
+
+Integração
+
+Descrição
+
+Adicionar o mesmo produto duas vezes cria dois registros distintos no carrinho.
+
+A regra determina que apenas a quantidade deve ser incrementada.
+
+BUG-CAR-002
+Tipo
+
+Funcional
+
+Descrição
+
+O subtotal não é recalculado após alteração da quantidade.
+
+BUG-CAR-003
+Tipo
+
+Regressão
+
+Versão
+
+2.0
+
+Descrição
+
+Ao remover um item, o desconto do cupom desaparece.
+
+BUG-CAR-004
+Tipo
+
+API
+
+Descrição
+
+A API retorna HTTP 200 mesmo quando o produto está sem estoque.
+
+O correto seria HTTP 409.
+
+BUG-PRO-001
+
+Produto sem imagem principal aparece normalmente no catálogo.
+
+BUG-PRO-002
+
+É possível cadastrar avaliação sem comprar o produto.
+
+BUG-CHK-001
+
+Pedido é criado mesmo quando o pagamento é recusado.
+
+BUG-CHK-002
+
+O estoque é reduzido antes da autorização do pagamento.
+
+BUG-ORD-001
+
+Pedido cancelado retorna para status Pago.
+
+BUG-ADM-001
+
+Usuário comum consegue acessar URL administrativa digitando diretamente o endereço.
+
+BUG-API-001
+
+Endpoint retorna HTTP 500 para parâmetros inválidos.
+
+O correto seria HTTP 400.
+
+BUG-API-002
+
+Erro de autenticação retorna HTTP 200.
+
+BUG-API-003
+
+Resposta contém campo interno que não deveria ser exposto.
+
+BUG-DB-001
+
+Consulta N+1 proposital na listagem de pedidos.
+
+BUG-DB-002
+
+Falta índice na tabela de pedidos.
+
+BUG-LOG-001
+
+Alterações administrativas não geram auditoria.
+
+BUG-PER-001
+
+Pesquisa de produtos demora mais de cinco segundos com dez mil registros.
+
+BUG-PER-002
+
+Consulta de dashboard administrativo executa múltiplas consultas desnecessárias.
+
+BUG-SEC-001
+
+JWT permanece válido após logout.
+
+BUG-SEC-002
+
+Campo de pesquisa aceita caracteres potencialmente utilizados em SQL Injection sem validação adequada.
+
+Observação didática: o objetivo é demonstrar validação insuficiente e estimular a análise de entradas maliciosas. A implementação deve permanecer em um ambiente controlado, sem expor vulnerabilidades reais exploráveis.
+
+BUG-SEC-003
+
+Upload aceita arquivos com extensão diferente da esperada.
+
+6. Planejamento por Versões
+Versão 1.0
+
+Sistema inicial.
+
+Defeitos ativos
+
+40 bugs
+
+Objetivo:
+
+Testes manuais
+Casos de teste
+Exploratórios
+Versão 1.1
+
+Correções.
+
+Defeitos corrigidos
+
+15
+
+Novos defeitos
+
+8
+
+Objetivo:
+
+Testes de regressão.
+
+Versão 2.0
+
+Novos módulos.
+
+Novos bugs
+
+25
+
+Objetivo:
+
+Automação.
+
+Versão 2.1
+
+Correções.
+
+Novas regressões.
+
+Versão 3.0
+
+Pipeline CI/CD.
+
+Cobertura.
+
+Performance.
+
+7. Matriz de Uso nas Aulas
+Aula	Defeitos principais
+Fundamentos de QA	BUG-AUT-001, BUG-CAR-001
+Casos de Teste	BUG-PRO-002, BUG-CAR-002
+Testes Exploratórios	BUG-CHK-001, BUG-ORD-001
+Testes de API	BUG-API-001, BUG-API-002
+Selenium	BUG-PRO-001, BUG-CAR-003
+Integração	BUG-DB-001, BUG-CHK-002
+Performance	BUG-PER-001, BUG-PER-002
+Segurança	BUG-SEC-001, BUG-SEC-002
+Regressão	Defeitos corrigidos entre as versões 1.0 e 1.1
+Uma melhoria que considero essencial
+
+Há um recurso utilizado por equipes maduras de QA que vale a pena incorporar desde o início: um Catálogo de Defeitos Semeados (Seeded Defect Matrix).
+
+Em vez de registrar apenas os bugs, cada defeito também receberá metadados para apoiar o planejamento das aulas e a avaliação dos alunos:
+
+Campo adicional	Finalidade
+Probabilidade de descoberta	Alta, Média ou Baixa
+Tempo médio esperado para encontrar	Apoio ao planejamento das atividades
+Habilidade desenvolvida	Ex.: análise de requisitos, automação, testes exploratórios
+Ferramenta mais adequada	Pytest, Selenium, Postman, JMeter etc.
+Evidência esperada	Captura de tela, log, relatório, script automatizado ou bug report
+Nível Bloom	Recordar, Aplicar, Analisar, Avaliar
